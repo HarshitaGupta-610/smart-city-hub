@@ -9,8 +9,44 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as VisualRouteImport } from './routes/visual'
+import { Route as SurveillanceRouteImport } from './routes/surveillance'
+import { Route as LightingRouteImport } from './routes/lighting'
+import { Route as ControlRouteImport } from './routes/control'
+import { Route as AnalyticsRouteImport } from './routes/analytics'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 
+const VisualRoute = VisualRouteImport.update({
+  id: '/visual',
+  path: '/visual',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SurveillanceRoute = SurveillanceRouteImport.update({
+  id: '/surveillance',
+  path: '/surveillance',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LightingRoute = LightingRouteImport.update({
+  id: '/lighting',
+  path: '/lighting',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ControlRoute = ControlRouteImport.update({
+  id: '/control',
+  path: '/control',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AnalyticsRoute = AnalyticsRouteImport.update({
+  id: '/analytics',
+  path: '/analytics',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +55,116 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/analytics': typeof AnalyticsRoute
+  '/control': typeof ControlRoute
+  '/lighting': typeof LightingRoute
+  '/surveillance': typeof SurveillanceRoute
+  '/visual': typeof VisualRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/analytics': typeof AnalyticsRoute
+  '/control': typeof ControlRoute
+  '/lighting': typeof LightingRoute
+  '/surveillance': typeof SurveillanceRoute
+  '/visual': typeof VisualRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/analytics': typeof AnalyticsRoute
+  '/control': typeof ControlRoute
+  '/lighting': typeof LightingRoute
+  '/surveillance': typeof SurveillanceRoute
+  '/visual': typeof VisualRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/analytics'
+    | '/control'
+    | '/lighting'
+    | '/surveillance'
+    | '/visual'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/about'
+    | '/analytics'
+    | '/control'
+    | '/lighting'
+    | '/surveillance'
+    | '/visual'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/analytics'
+    | '/control'
+    | '/lighting'
+    | '/surveillance'
+    | '/visual'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  AnalyticsRoute: typeof AnalyticsRoute
+  ControlRoute: typeof ControlRoute
+  LightingRoute: typeof LightingRoute
+  SurveillanceRoute: typeof SurveillanceRoute
+  VisualRoute: typeof VisualRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/visual': {
+      id: '/visual'
+      path: '/visual'
+      fullPath: '/visual'
+      preLoaderRoute: typeof VisualRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/surveillance': {
+      id: '/surveillance'
+      path: '/surveillance'
+      fullPath: '/surveillance'
+      preLoaderRoute: typeof SurveillanceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lighting': {
+      id: '/lighting'
+      path: '/lighting'
+      fullPath: '/lighting'
+      preLoaderRoute: typeof LightingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/control': {
+      id: '/control'
+      path: '/control'
+      fullPath: '/control'
+      preLoaderRoute: typeof ControlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/analytics': {
+      id: '/analytics'
+      path: '/analytics'
+      fullPath: '/analytics'
+      preLoaderRoute: typeof AnalyticsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,6 +177,12 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  AnalyticsRoute: AnalyticsRoute,
+  ControlRoute: ControlRoute,
+  LightingRoute: LightingRoute,
+  SurveillanceRoute: SurveillanceRoute,
+  VisualRoute: VisualRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
